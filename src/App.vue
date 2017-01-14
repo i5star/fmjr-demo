@@ -20,5 +20,14 @@
 </script>
 
 <style>
-
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
 </style>
