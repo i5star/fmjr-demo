@@ -31,6 +31,6 @@
 
 <style lang="scss">
     .index-goodlist {
-        background-color: #f1f1f1;
+        
     }
 </style>
