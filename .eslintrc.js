@@ -29,6 +29,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-constant-condition': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'linebreak-style': 0
+    'linebreak-style': 0,
+    'global-require': 0
   }
 }
