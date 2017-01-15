@@ -58,7 +58,8 @@
         bottom: 0;
     }
     .tab-bar-container {
-        padding: 6px 0px; 
+        padding: 6px 0px;
+        margin: 0;
     }
     
 </style>
