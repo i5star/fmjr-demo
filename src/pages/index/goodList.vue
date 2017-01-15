@@ -30,7 +30,4 @@
 </script>
 
 <style lang="scss">
-    .index-goodlist {
-        
-    }
 </style>

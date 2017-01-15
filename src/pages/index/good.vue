@@ -41,10 +41,9 @@
 <style lang="scss">
     .index-good {
         $allColor: #ff6c00;
-
-        width: 100%;
+        padding:10px 15px;
         background-color: white;
-        margin-top: 10px;
+        margin-top: 5px;
 
         // 上面部分
         & > :nth-child(1) {
@@ -73,10 +72,10 @@
             // 下左部分
             & > :nth-child(1) {
                 float: left;
-
                 & > :nth-child(1) {
                     color: $allColor;
                     font-size: 18px;
+                    padding:20px 0px 13px;
                     & > strong {
                         font-size: 30px;
                     }
@@ -90,7 +89,8 @@
             // 下右部分
             & > :nth-child(2) {
                 float: right;
-
+                padding:20px 35px 13px 0px;
+                width:60%;
                 & > :nth-child(1) {
                     font-size: 13px;
                     color: #666;
@@ -104,24 +104,28 @@
                 & > :nth-child(2) {
                     & > :nth-child(1) {
                         width: 100%;
-                        height: 5px;
-                        float: left;
+                        height: 2.5px;
+                        background-color: #f1f1f1; 
                         & > div {
-                            height: 5px;
-                            padding-right: 36px;
+                            width: 50px;
+                            height: 2.5px;
+                            margin:5px 5px 15px 0px;
                             background-color: $allColor;
                         }
                     }
                     & > :nth-child(2) {
-                        float: left;
+                        float: right;
                         margin-right: -36px;
-                        width: 36px;
+                        margin-top: -11px;
+                        color :#999;
                     }
                 }
                 & > :nth-child(3) {
                     font-size: 13px;
                     color: #666;
                     text-align: right;
+                    padding-top: 8px;
+                   margin-right: -36px;
                 }
             }
         }
