@@ -1,5 +1,6 @@
 <template>
     <div class="index-roadmap">
+    <img src="../../assets/banner02.png" alt="">
     </div>
 </template>
 
@@ -14,5 +15,9 @@
         width: 100%;
         height: 155px;
         background-color: cornflowerblue;
+        & > img{
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>
