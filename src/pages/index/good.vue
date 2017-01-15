@@ -2,31 +2,33 @@
     <div class="index-good">
         <div>
             <div>
-                <span>2个月</span>
+                <span>{{ lendDate }}个月</span>
             </div>
-            <span>分秒月盈WX0829期</span>
+            <span>{{ subjectName }}</span>
         </div>
         <div class="fix-float">
             <div>
                 <p>
-                    <strong>7.6</strong>+2
+                    <strong>{{ lendRate }}</strong>+{{ rewardRate }}
                 </p>
                 <p>年化收益(%)</p>
             </div>
             <div>
-                <p>
-                    <span>
-                        <strong>15</strong>.00
-                    </span>
-                    万元可投
-                </p>
-                <div class="fix-float">
-                    <div>
-                        <div></div>
+                <div>
+                    <p>
+                        <span>
+                            <strong>{{ (lendAmt - investMoney) / 10000 }}</strong>.00
+                        </span>
+                        万元可投
+                    </p>
+                    <div class="fix-float">
+                        <div>
+                            <div></div>
+                        </div>
+                        <p>{{ investMoney / lendAmt * 100 | toFixed(0) }}%</p>
                     </div>
-                    <p>25%</p>
+                    <p>融资总额{{ lendAmt / 10000 }}万</p>
                 </div>
-                <p>融资总额20.00万</p>
             </div>
         </div>
     </div>
@@ -35,6 +37,34 @@
 <script>
     export default {
         name: 'Good',
+        props: {
+            lendDate: {
+                type: Number,
+            },
+            subjectName: {
+                type: String,
+            },
+            lendRate: {
+                type: Number,
+            },
+            rewardRate: {
+                type: Number,
+            },
+            lendAmt: {
+                type: Number,
+            },
+            investMoney: {
+                type: Number,
+            },
+        },
+        filters: {
+            toFixed(value, digit) {
+                if (typeof value === 'number') {
+                    return value.toFixed(digit);
+                }
+                return value;
+            },
+        },
     };
 </script>
 
@@ -72,6 +102,7 @@
             // 下左部分
             & > :nth-child(1) {
                 float: left;
+                width: 40%;
                 & > :nth-child(1) {
                     color: $allColor;
                     font-size: 18px;
@@ -88,44 +119,48 @@
 
             // 下右部分
             & > :nth-child(2) {
+                $rateTextWidth: 45px;
+
                 float: right;
-                padding:20px 35px 13px 0px;
                 width:60%;
-                & > :nth-child(1) {
-                    font-size: 13px;
-                    color: #666;
-                    & > span {
-                        color: $allColor;
-                        & > strong {
-                            font-size: 18px;
-                        }
-                    }
-                }
-                & > :nth-child(2) {
+                & > div {
+                    padding:20px $rateTextWidth 13px 0px;
                     & > :nth-child(1) {
-                        width: 100%;
-                        height: 2.5px;
-                        background-color: #f1f1f1; 
-                        & > div {
-                            width: 50px;
-                            height: 2.5px;
-                            margin:5px 5px 15px 0px;
-                            background-color: $allColor;
+                        font-size: 13px;
+                        color: #666;
+                        & > span {
+                            color: $allColor;
+                            & > strong {
+                                font-size: 18px;
+                            }
                         }
                     }
                     & > :nth-child(2) {
-                        float: right;
-                        margin-right: -36px;
-                        margin-top: -11px;
-                        color :#999;
+                        & > :nth-child(1) {
+                            width: 100%;
+                            height: 2.5px;
+                            background-color: #f1f1f1; 
+                            & > div {
+                                width: 100%;
+                                height: 2.5px;
+                                margin:5px 5px 15px 0px;
+                                background-color: $allColor;
+                            }
+                        }
+                        & > :nth-child(2) {
+                            float: right;
+                            margin-right: -$rateTextWidth;
+                            margin-top: -11px;
+                            color :#999;
+                        }
                     }
-                }
-                & > :nth-child(3) {
-                    font-size: 13px;
-                    color: #666;
-                    text-align: right;
-                    padding-top: 8px;
-                   margin-right: -36px;
+                    & > :nth-child(3) {
+                        font-size: 13px;
+                        color: #666;
+                        text-align: right;
+                        padding-top: 8px;
+                    margin-right: -$rateTextWidth;
+                    }
                 }
             }
         }

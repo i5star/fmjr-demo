@@ -31,6 +31,7 @@ module.exports = {
     'no-constant-condition': process.env.NODE_ENV === 'production' ? 2 : 0,
     'linebreak-style': 0,
     'global-require': 0,
-    'import/extensions': 0
+    'import/extensions': 0,
+    'no-param-reassign': 0
   }
 }
