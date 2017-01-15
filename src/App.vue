@@ -7,7 +7,6 @@
 
 <script>
     import Index from './pages/index/index';
-
     import TabBar from './pages/tabBar';
 
     export default {
