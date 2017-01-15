@@ -29,4 +29,7 @@
         margin: 0;
         list-style: none;
     }
+    #app {
+        overflow-y: scroll;
+    }
 </style>
