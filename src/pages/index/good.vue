@@ -39,13 +39,6 @@
 </script>
 
 <style lang="scss">
-    .fix-float {
-        &::after {
-            content: ' ';
-            display: block;
-            clear: both;
-        }
-    }
     .index-good {
         $allColor: #ff6c00;
 

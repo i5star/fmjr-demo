@@ -13,6 +13,7 @@
         width: 100%;
         padding: 12px 0px;
         border-bottom: 1px solid #e5e5e5;
+        background-color: white;
         & > .announcement-text {
             font-size: 12px;
         }

@@ -1,6 +1,6 @@
 <template>
     <div class="navigatorBar">
-        <div class="navigatorBar-container">
+        <div class="navigatorBar-container fix-float">
              <NavigatorBarItem
                 v-for="item of items"
                 :name="item.name"
@@ -46,6 +46,7 @@
     .navigatorBar {
         width: 100%;
         overflow: hidden;
+        background-color: white;
         & > .navigatorBar-container {
             padding:12px 0px;
         }
