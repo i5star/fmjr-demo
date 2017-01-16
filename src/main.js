@@ -12,6 +12,8 @@ import App from './App';
 
 // stores
 import indexStore from './store/index.js';
+// routers
+import router from './router.js';
 
 require('normalize.css');
 
@@ -28,7 +30,9 @@ if (process.env.NODE_ENV !== 'production') {
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    router,
     store: indexStore,
+    a: 1,
     template: '<App/>',
     components: { App },
 });
