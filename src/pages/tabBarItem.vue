@@ -1,5 +1,8 @@
 <template>
-    <div class="item-container">
+    <div
+        class="item-container"
+        @click="onClick"
+    >
         <img
             :src="selected ? imageSelected : image"
             class="item-img"
@@ -36,6 +39,9 @@
             selected: {
                 type: Boolean,
                 default: false,
+            },
+            onClick: {
+                type: Function,
             },
         },
     };
