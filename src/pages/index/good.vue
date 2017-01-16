@@ -23,6 +23,7 @@
                     </p>
                     <div class="fix-float">
                         <div>
+                            <div :style="{ width: `${investMoney / lendAmt * 100}%` }"></div>
                         </div>
                         <p>{{ investMoney / lendAmt * 100 | toFixed(0) }}%</p>
                     </div>
