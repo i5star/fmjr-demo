@@ -21,9 +21,9 @@ Vue.use(vueRouter);
 Vue.use(MintUI);
 
 // 使用mock.js拦截ajax请求
-// if (process.env.NODE_ENV !== 'production') {
-//     require('./mocks/index.js');
-// }
+if (process.env.NODE_ENV !== 'production') {
+    require('./mocks/index.js');
+}
 
 /* eslint-disable no-new */
 new Vue({
