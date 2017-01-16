@@ -5,6 +5,8 @@ import axios from 'axios';
 import vueAxios from 'vue-axios';
 import vuex from 'vuex';
 import vueRouter from 'vue-router';
+import MintUI from 'mint-ui';
+import 'mint-ui/lib/style.css';
 
 import App from './App';
 
@@ -16,11 +18,12 @@ require('normalize.css');
 Vue.use(vueAxios, axios);
 Vue.use(vuex);
 Vue.use(vueRouter);
+Vue.use(MintUI);
 
 // 使用mock.js拦截ajax请求
-if (process.env.NODE_ENV !== 'production') {
-    require('./mocks/index.js');
-}
+// if (process.env.NODE_ENV !== 'production') {
+//     require('./mocks/index.js');
+// }
 
 /* eslint-disable no-new */
 new Vue({

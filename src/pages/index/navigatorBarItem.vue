@@ -30,7 +30,6 @@
         },
         methods: {
             jump() {
-                console.log('这是一个跳转的页面');
             },
         },
     };
