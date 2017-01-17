@@ -12,7 +12,7 @@
     import NavigatorBar from './navigatorBar.vue';
     import GoodList from './goodList.vue';
     import Announcement from './announcement.vue';
-    
+
     export default {
         name: 'index',
         components: {

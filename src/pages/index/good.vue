@@ -9,7 +9,7 @@
         <div class="fix-float">
             <div>
                 <p>
-                    <strong>{{ lendRate }}</strong>+{{ rewardRate }}
+                    <strong>{{ lendRate | toFixed(1) }}</strong>+{{ rewardRate }}
                 </p>
                 <p>年化收益(%)</p>
             </div>
@@ -23,7 +23,7 @@
                     </p>
                     <div class="fix-float">
                         <div>
-                            <div></div>
+                            <div :style="{ width: `${investMoney / lendAmt * 100}%` }"></div>
                         </div>
                         <p>{{ investMoney / lendAmt * 100 | toFixed(0) }}%</p>
                     </div>
@@ -106,7 +106,7 @@
                 & > :nth-child(1) {
                     color: $allColor;
                     font-size: 18px;
-                    padding:20px 0px 13px;
+                    padding:15px 0px 13px;
                     & > strong {
                         font-size: 30px;
                     }
@@ -124,7 +124,7 @@
                 float: right;
                 width:60%;
                 & > div {
-                    padding:20px $rateTextWidth 13px 0px;
+                    padding:15px $rateTextWidth 13px 0px;
                     & > :nth-child(1) {
                         font-size: 13px;
                         color: #666;
