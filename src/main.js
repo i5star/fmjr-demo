@@ -12,6 +12,8 @@ import App from './App';
 
 // stores
 import indexStore from './store/index.js';
+// routers
+import router from './router.js';
 
 require('normalize.css');
 
@@ -21,14 +23,16 @@ Vue.use(vueRouter);
 Vue.use(MintUI);
 
 // 使用mock.js拦截ajax请求
-// if (process.env.NODE_ENV !== 'production') {
-//     require('./mocks/index.js');
-// }
+if (process.env.NODE_ENV !== 'production') {
+    require('./mocks/index.js');
+}
 
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    router,
     store: indexStore,
+    a: 1,
     template: '<App/>',
     components: { App },
 });
