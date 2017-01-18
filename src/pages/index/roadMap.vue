@@ -25,9 +25,8 @@
         },
         created() {
             const url = 'http://192.168.1.13:8080/jinshizi-manage-web/api/banner/banners';
-            const self = this;
             vue.axios.get(url).then((response) => {
-                self.bannerList = response.data.data;
+                this.bannerList = response.data.data;
             });
         },
     };
