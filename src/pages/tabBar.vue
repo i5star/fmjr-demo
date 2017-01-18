@@ -6,10 +6,9 @@
                 :name="item.name"
                 :image="item.image"
                 :imageSelected="item.imageSelected"
-                :selected="item.route === $route.path"
-                :onClick="handleClick(item.route)"
-            >
-            </TabBarItem>
+                :selected="isSelected(item.route)"
+                :route="item.route"
+            ></TabBarItem>
         </ul>
     </div>
 </template>
@@ -55,6 +54,9 @@
         methods: {
             handleClick(route) {
                 this.$router.push(route);
+            },
+            isSelected(route) {
+                return this.$route.path.indexOf(route) !== -1 || (this.$route.path === '/' && route === '/index');
             },
         },
     };

@@ -1,7 +1,7 @@
 <template>
     <div
         class="item-container"
-        @click="onClick"
+        @click="handleClick"
     >
         <img
             :src="selected ? imageSelected : image"
@@ -40,8 +40,14 @@
                 type: Boolean,
                 default: false,
             },
-            onClick: {
-                type: Function,
+            route: {
+                type: String,
+                default: '/',
+            },
+        },
+        methods: {
+            handleClick() {
+                this.$router.push(`/main${this.route}`);
             },
         },
         components: {
