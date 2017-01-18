@@ -1,5 +1,8 @@
 <template>
-    <div class="index-good">
+    <div
+        class="index-good"
+        @click="handleClick"
+    >
         <div>
             <div>
                 <span>{{ lendDate }}个月</span>
@@ -63,6 +66,11 @@
                     return value.toFixed(digit);
                 }
                 return value;
+            },
+        },
+        methods: {
+            handleClick() {
+                this.$router.push('/investDetail');
             },
         },
     };
