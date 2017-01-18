@@ -10,7 +10,7 @@
     export default {
         name: 'announcement',
         computed: mapState({
-            news: state => state.notice,
+            news: state => state.home.notice,
         }),
         created() {
             this.$store.dispatch('getNotices');

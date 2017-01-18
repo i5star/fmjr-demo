@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 
-Mock.mock('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=2&pageSize=3', {
+Mock.mock(/\/jinshizi-manage-web\/api\/subject\/list/, {
     success: true,
     data: {
         pageOffset: 2,

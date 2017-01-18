@@ -23,6 +23,8 @@
 
 <script>
     import { Header, Navbar, TabItem } from 'mint-ui';
+
+    const MintHeader = Header;
     // import GoodList from '../index/goodList.vue';
 
     export default {
@@ -36,7 +38,7 @@
         },
         components: {
             // GoodList,
-            Header,
+            MintHeader,
             Navbar,
             TabItem,
         },

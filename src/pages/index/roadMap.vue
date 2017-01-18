@@ -10,14 +10,12 @@
 
 <script>
     import { mapState } from 'vuex';
-    import vue from 'vue';
     import { Swipe, SwipeItem } from 'mint-ui';
 
     export default {
         name: 'RoadMap',
         data() {
             return {
-                bannerList: [],
             };
         },
         components: {

@@ -10,6 +10,8 @@
 <script>
     import { Header } from 'mint-ui';
 
+    const MintHeader = Header;
+
     export default {
         name: 'Mine',
         data() {
@@ -18,7 +20,7 @@
             };
         },
         components: {
-            Header,
+            MintHeader,
         },
     };
 </script>

@@ -26,7 +26,7 @@
             Good,
         },
         computed: mapState({
-            goods: state => state.goodList,
+            goods: state => state.home.goodList,
         }),
         created() {
             this.$store.dispatch('getGoodList');
