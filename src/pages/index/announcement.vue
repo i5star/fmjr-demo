@@ -21,7 +21,6 @@
     .index-announcement {
         width: 100%;
         padding: 12px 0px;
-        overflow: hidden;
         border-bottom: 1px solid #e5e5e5;
         background-color: white;
         & > .announcement-text {

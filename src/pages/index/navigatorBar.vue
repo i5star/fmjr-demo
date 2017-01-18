@@ -1,7 +1,11 @@
 <template>
     <div class="navigatorBar">
         <div class="navigatorBar-container fix-float">
-            <NavigatorBarItem v-for="item of items" :name="item.name" :image="item.image"></NavigatorBarItem>
+             <NavigatorBarItem
+                v-for="item of items"
+                :name="item.name"
+                :image="item.image"
+            ></NavigatorBarItem>
         </div>
     </div>
 </template>
@@ -42,8 +46,6 @@
     .navigatorBar {
         width: 100%;
         overflow: hidden;
-        /*background: url(../../assets/home_bg01@3x.png) center center no-repeat;*/
-        background-size: 100% 100%;
         background-color: white;
         & > .navigatorBar-container {
             padding:12px 0px;

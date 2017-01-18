@@ -10,12 +10,14 @@
 
 <script>
     import { mapState } from 'vuex';
+    import vue from 'vue';
     import { Swipe, SwipeItem } from 'mint-ui';
 
     export default {
         name: 'RoadMap',
         data() {
             return {
+                bannerList: [],
             };
         },
         components: {
@@ -28,13 +30,6 @@
         created() {
             this.$store.dispatch('getBanners');
         },
-        // created() {
-        //     const url = 'http://192.168.1.13:8080/jinshizi-manage-web/api/banner/banners';
-        //     const self = this;
-        //     vue.axios.get(url).then((response) => {
-        //         self.bannerList = response.data.data;
-        //     });
-        // },
     };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="index-good" @click="toVestDetails">
+    <div class="index-good">
         <div>
             <div>
                 <span>{{ lendDate }}个月</span>
@@ -18,7 +18,8 @@
                     <p>
                         <span>
                             <strong>{{ (lendAmt - investMoney) / 10000 }}</strong>.00
-                        </span> 万元可投
+                        </span>
+                        万元可投
                     </p>
                     <div class="fix-float">
                         <div>
@@ -62,12 +63,6 @@
                     return value.toFixed(digit);
                 }
                 return value;
-            },
-        },
-        methods: {
-            toVestDetails() {
-                console.log(123);
-                this.$router.push('/vestDetails');
             },
         },
     };

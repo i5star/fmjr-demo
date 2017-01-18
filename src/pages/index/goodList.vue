@@ -1,7 +1,14 @@
 <template>
     <div class="index-goodlist">
-        <Good v-for="good of goods" :lendDate="good.lendDate" :subjectName="good.subjectName" :lendRate="good.lendRate" :rewardRate="good.rewardRate"
-            :lendAmt="good.lendAmt" :investMoney="good.investMoney"></Good>
+        <Good
+            v-for="good of goods"
+            :lendDate="good.lendDate"
+            :subjectName="good.subjectName"
+            :lendRate="good.lendRate"
+            :rewardRate="good.rewardRate"
+            :lendAmt="good.lendAmt"
+            :investMoney="good.investMoney"
+        ></Good>
     </div>
 </template>
 
@@ -24,7 +31,6 @@
         created() {
             this.$store.dispatch('getGoodList');
         },
-
     };
 </script>
 

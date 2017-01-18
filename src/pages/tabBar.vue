@@ -1,7 +1,7 @@
 <template>
     <div class="tab-bar">
         <ul class="tab-bar-container">
-            <TabBarItem 
+            <TabBarItem
                 v-for="(item, index) of items"
                 :name="item.name"
                 :image="item.image"

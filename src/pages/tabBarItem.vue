@@ -1,11 +1,19 @@
 <template>
-    <div class="item-container" @click="onClick">
-        <img :src="selected ? imageSelected : image" class="item-img">
-        <p class="item-name" :class="{ selected }">
+    <div
+        class="item-container"
+        @click="onClick"
+    >
+        <img
+            :src="selected ? imageSelected : image"
+            class="item-img"
+        >
+        <p
+            class="item-name"
+            :class="{ selected }"
+        >
             {{ name }}
         </p>
     </div>
-
 </template>
 
 <script>
