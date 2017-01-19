@@ -24,7 +24,6 @@
         created() {
             this.$store.dispatch('getDetailsGoodList');
         },
-
     };
 </script>
 

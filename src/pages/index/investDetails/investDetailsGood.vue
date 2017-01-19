@@ -66,7 +66,6 @@
             lendCycleValue: {
                 type: Number,
             },
-
         },
         filters: {
             toFixed(value, digit) {
