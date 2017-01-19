@@ -1,11 +1,20 @@
 <template>
-    <div class="index-announcement">
-        <img src="../../assets/home_notice@3x.png" alt="公告" class="notice-img"><span class="announcement-text">分秒金融2017年元旦假期业务受理公告</span>
+    <div class="index-announcement fix-float">
+        <img src="../../assets/home_notice@3x.png" alt="公告" class="notice-img">
+        <p class="announcement-text">{{news.articleTitle}}</p>
     </div>
 </template>
 <script>
+    import { mapState } from 'vuex';
+
     export default {
         name: 'announcement',
+        computed: mapState({
+            news: state => state.home.notice,
+        }),
+        created() {
+            this.$store.dispatch('getNotices');
+        },
     };
 </script>
 <style lang="scss">
@@ -16,10 +25,15 @@
         background-color: white;
         & > .announcement-text {
             font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         & > .notice-img {
             width: 15px;
             height: 12px;
+            float: left;
             margin-left: 15px;
             margin-right: 3px;
         }

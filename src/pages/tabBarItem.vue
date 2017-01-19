@@ -1,7 +1,7 @@
 <template>
     <div
         class="item-container"
-        @click="onClick"
+        @click="handleClick"
     >
         <img
             :src="selected ? imageSelected : image"
@@ -14,12 +14,12 @@
             {{ name }}
         </p>
     </div>
-    
 </template>
 
 <script>
     import defaultImage from '../assets/home@3x.png';
     import defaultImageSelected from '../assets/home_hover@3x.png';
+    import Invest from './invest/invest.vue';
 
     export default {
         name: 'tabBarItem',
@@ -40,9 +40,18 @@
                 type: Boolean,
                 default: false,
             },
-            onClick: {
-                type: Function,
+            route: {
+                type: String,
+                default: '/',
             },
+        },
+        methods: {
+            handleClick() {
+                this.$router.push(`/main${this.route}`);
+            },
+        },
+        components: {
+            Invest,
         },
     };
 </script>

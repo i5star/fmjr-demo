@@ -11,7 +11,7 @@ import 'mint-ui/lib/style.css';
 import App from './App';
 
 // stores
-import indexStore from './store/index.js';
+import stores from './stores/index.js';
 // routers
 import router from './router.js';
 
@@ -31,8 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 new Vue({
     el: '#app',
     router,
-    store: indexStore,
-    a: 1,
+    store: stores,
     template: '<App/>',
     components: { App },
 });

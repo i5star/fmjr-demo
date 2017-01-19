@@ -6,8 +6,8 @@
                 :name="item.name"
                 :image="item.image"
                 :imageSelected="item.imageSelected"
-                :selected="index === selectedIndex"
-                :onClick="item.onClick"
+                :selected="isSelected(item.route)"
+                :route="item.route"
             ></TabBarItem>
         </ul>
     </div>
@@ -24,41 +24,40 @@
                         name: '首页',
                         image: require('../assets/home@3x.png'),
                         imageSelected: require('../assets/home_hover@3x.png'),
-                        onClick: () => {
-                            this.$router.push('/index');
-                        },
+                        route: '/index',
                     },
                     {
                         name: '投资',
                         image: require('../assets/invest@3x.png'),
                         imageSelected: require('../assets/invest_hover@3x.png'),
-                        onClick: () => {
-                            this.$router.push('/invest');
-                        },
+                        route: '/invest',
                     },
                     {
                         name: '发现',
                         image: require('../assets/find@3x.png'),
                         imageSelected: require('../assets/find_hover@3x.png'),
-                        onClick: () => {
-                            this.$router.push('/find');
-                        },
+                        route: '/find',
                     },
                     {
                         name: '我的',
                         image: require('../assets/my@3x.png'),
                         imageSelected: require('../assets/my_hover@3x.png'),
-                        onClick: () => {
-                            this.$router.push('/mine');
-                        },
+                        route: '/mine',
                     },
                 ],
-                selectedIndex: 0,
             };
         },
         name: 'tabBar',
         components: {
             TabBarItem,
+        },
+        methods: {
+            handleClick(route) {
+                this.$router.push(route);
+            },
+            isSelected(route) {
+                return this.$route.path.indexOf(route) !== -1 || (this.$route.path === '/' && route === '/index');
+            },
         },
     };
 </script>
@@ -68,7 +67,9 @@
         height: 49px;
         background-color: #f1f1f1;
         position: fixed;
+        z-index:20;
         bottom: 0;
+        border-top: 1px solid #e5e5e5;
     }
     .tab-bar-container {
         padding: 6px 0px;
