@@ -4,13 +4,13 @@
             <span>{{ subjectName }}</span>
             <span>按月付息，到期还本</span>
         </div>
-            <div>
-                <p>
-                    <span>{{ lendRate | toFixed(2) }}</span><span v-show="rewardRate>0">+{{ rewardRate }}</span>
-                </p>
-                <p>年化收益(%)</p>
-            </div>
-        
+        <div>
+            <p>
+                <span>{{ lendRate | toFixed(2) }}</span><span v-show="rewardRate>0">+{{ rewardRate }}</span>
+            </p>
+            <p>年化收益(%)</p>
+        </div>
+
         <div>
             <div class="fix-float">
                 <div class="allLength">
@@ -22,46 +22,48 @@
         <ul class="fix-float">
             <li>
                 <p style="font-size:23px">{{ lendCycleValue }}</p>
-                <p>投资期限（月）</p>
-            </li>
-            <li>
-                 <p style="color:#ff6c00;font-size:18px"><span>{{  investMoney/10000 |  toFixed(2) }}</span></p>
-                 <p>可投金额（万元）</p>
-            </li>
-            <li>
-                 <p style="font-size:18px">{{ lendAmt / 10000 | toFixed(2) }}</p>
-                 <p>融资总额(万元）</p>
-            </li>
-        </ul>
-        <div class="invest-day">
-                <span>发布日期：{{ publishDate }}</span>&nbsp;&nbsp;&nbsp;
-                <span>还款日期：{{ payBackDate }}</span>
-                <p>剩余时间：8天13小时42分07秒</p>
-        </div>
+<p>投资期限（月）</p>
+</li>
+<li>
+    <p style="color:#ff6c00;font-size:18px"><span>{{  investMoney/10000 |  toFixed(2) }}</span></p>
+<p>可投金额（万元）</p>
+</li>
+<li>
+    <p style="font-size:18px">{{ lendAmt / 10000 | toFixed(2) }}</p>
+<p>融资总额(万元）</p>
+</li>
+</ul>
+<div class="invest-day">
+    <span>发布日期：{{ publishDate | todate }}</span>&nbsp;&nbsp;&nbsp;
+    <span>还款日期：{{ payBackDate | todate }}</span>
+    <p>剩余时间：{{ overDate }}</p>
+</div>
 
-        <div class="invest-process fix-float">
-              <div class="invest-process-active">
-                    <p><img src="../../../assets/tz_datehover@3x.png"></p>
-                    <p>预计起息日</p>
-                    <p>{{ planInterestDate }}</p>
-             </div>
-            <div>
-                    <p><img src="../../../assets/tz_zq@3x.png"></p>
-                    <p>拼命赚钱</p>
-                    <p>收益快速增长中</p>
-            </div>
-            <div>
-                    <p><img src="../../../assets/tz_hk@3x.png"></p>
-                    <p>预计到期日</p>
-                    <p>{{ payBackDate }}</p>
-            </div>
-        </div>
-        
-   
+<div class="invest-process fix-float">
+    <div class="invest-process-active">
+        <p><img src="../../../assets/tz_datehover@3x.png"></p>
+        <p>预计起息日</p>
+        <p>{{ planInterestDate }}</p>
+    </div>
+    <div>
+        <p><img src="../../../assets/tz_zq@3x.png"></p>
+        <p>拼命赚钱</p>
+        <p>收益快速增长中</p>
+    </div>
+    <div>
+        <p><img src="../../../assets/tz_hk@3x.png"></p>
+        <p>预计到期日</p>
+        <p>{{ payBackDate }}</p>
+    </div>
+</div>
+
+
 </div>
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         name: 'vestDetailsGood',
         props: {
@@ -92,7 +94,9 @@
             planInterestDate: {
                 type: String,
             },
-
+            overDate: {
+                type: String,
+            },
         },
         filters: {
             toFixed(value, digit) {
@@ -101,9 +105,15 @@
                 }
                 return value;
             },
-            // todate(value) {
-
-            // },
+            todate(value) {
+                return moment(value).locale('zh-cn').format('LL');
+            },
+            fromNow(value) {
+                return value.to(new Date());
+            },
+        },
+        computed() {
+            console.log(this.overDate - new Date());
         },
     };
 </script>

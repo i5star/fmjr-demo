@@ -10,6 +10,7 @@
         :publishDate="detailsGoodLists.publishDate"
         :payBackDate="detailsGoodLists.payBackDate"
         :planInterestDate="detailsGoodLists.planInterestDate"
+        :overDate="detailsGoodLists.overDate"
         ></InvestDetailsGood>
     </div>
 </template>

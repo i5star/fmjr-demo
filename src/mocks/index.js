@@ -55,7 +55,7 @@ Mock.mock(/\/jinshizi-manage-web\/api\/subject\/list/, {
     },
     code: '1000',
 });
-Mock.mock('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view/310014', {
+Mock.mock('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view?id=310012', {
     success: true,
     data: {
         id: 310014,
@@ -68,6 +68,7 @@ Mock.mock('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view/310014'
         lendCycleValue: 6,
         investMoney: 119900.00,
         rewardRate: 0.00,
+        overDate: '2017-01-25',
         publishDate: '2017-01-03',
     },
     code: '0000',
