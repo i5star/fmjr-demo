@@ -1,7 +1,7 @@
 <template>
     <div class="invest-details-page">
-        <mt-header :title="title" class="com-header">
-            <span @click="handleClick"><</span>
+        <mt-header :title="title">
+            <span @click="handleBack"></span>
         </mt-header>
         <InvestDetailsGoodList></InvestDetailsGoodList>
     </div>

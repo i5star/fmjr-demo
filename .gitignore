@@ -4,6 +4,7 @@ dist/
 .svn
 npm-debug.log
 test/unit/coverage
+.project
 
 # visual studio code
 .vscode
