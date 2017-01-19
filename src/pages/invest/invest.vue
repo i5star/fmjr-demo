@@ -2,7 +2,6 @@
     <div class="invest-page">
         <mt-header :title="title" class="com-header">
             <router-link to="/index" slot="left">
-                <mt-button icon="back"></mt-button>
             </router-link>
         </mt-header>
         <mt-navbar v-model="selected">
@@ -23,10 +22,9 @@
 
 <script>
     import { Header, Navbar, TabItem } from 'mint-ui';
+    import GoodList from '../index/goodList.vue';
 
     const MintHeader = Header;
-    // import GoodList from '../index/goodList.vue';
-
     export default {
         name: 'Invest',
         data() {
@@ -37,7 +35,7 @@
             };
         },
         components: {
-            // GoodList,
+            GoodList,
             MintHeader,
             Navbar,
             TabItem,
@@ -52,15 +50,13 @@
         margin:0;
         padding:0;
         background-color: #f1f1f1;
-    
-    }
-   
-    .mint-tab-item-label {
+        .mint-tab-item-label {
         font-size:18px !important;
         }
-    .is-selected {
+        .is-selected {
         color:#ff6c00 !important;
         border:0 !important;
       }
-   
+    
+    }
 </style>

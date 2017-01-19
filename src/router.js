@@ -5,8 +5,7 @@ import Index from './pages/index/index.vue';
 import Invest from './pages/invest/invest.vue';
 import Find from './pages/find/find.vue';
 import Mine from './pages/mine/mine.vue';
-// import VestDetails from './pages/vestDetails/vestDetails.vue';
-import InvestDetail from './pages/index/investDetail/investDetail.vue';
+import InvestDetail from './pages/index/investDetails/investDetails.vue';
 
 const routers = new VueRouter({
     routes: [
@@ -38,10 +37,6 @@ const routers = new VueRouter({
             path: '/investDetail',
             component: InvestDetail,
         },
-        // {
-        //     path: '/vestDetails',
-        //     component: VestDetails,
-        // },
     ],
 });
 

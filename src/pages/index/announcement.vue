@@ -1,5 +1,5 @@
 <template>
-    <div class="index-announcement">
+    <div class="index-announcement fix-float">
         <img src="../../assets/home_notice@3x.png" alt="公告" class="notice-img">
         <p class="announcement-text">{{news.articleTitle}}</p>
     </div>

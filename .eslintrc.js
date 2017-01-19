@@ -32,6 +32,7 @@ module.exports = {
     'linebreak-style': 0,
     'global-require': 0,
     'import/extensions': 0,
-    'no-param-reassign': 0
+    'no-param-reassign': 0,
+    'eol-last': 0
   }
 }

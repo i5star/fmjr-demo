@@ -24,7 +24,7 @@ const home = {
     actions: {
         getGoodList(context) {
             vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=1&pageSize=3').then((response) => {
-                context.commit('setGoodList', response.data.data.list);
+                context.commit('setGoodList', response.data.data);
             });
         },
         getBanners(context) {
@@ -33,13 +33,14 @@ const home = {
             });
         },
         getNotices(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/article/list/1?pageSize=1').then((response) => {
-                context.commit('setNotices', response.data.data.list[0]);
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/article/list?articleType=1&pageSize=1').then((response) => {
+                context.commit('setNotices', response.data.data[0]);
             });
         },
         getDetailsGoodList(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view/310014').then((response) => {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view?id=310012').then((response) => {
                 context.commit('setDetailsGoodList', response.data.data);
+                console.log(response.data.data);
             });
         },
     },

@@ -2,7 +2,7 @@
     <div class="index-roadmap">
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="banner in bannerList">
-                <a :href="banner.linkUrl" v-bind:style="{'background-image':'url('+ banner.rootPath+banner.picUrl +')'}" class="index-roadmap-a"></a>
+                <a :href="banner.linkUrl" v-bind:style="{'background-image':'url('+ banner.picUrl +')'}" class="index-roadmap-a"></a>
             </mt-swipe-item>
         </mt-swipe>
     </div>
@@ -23,7 +23,7 @@
             SwipeItem,
         },
         computed: mapState({
-            bannerList: state => state.bannerList,
+            bannerList: state => state.home.bannerList,
         }),
         created() {
             this.$store.dispatch('getBanners');
