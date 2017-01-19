@@ -50,15 +50,13 @@
         margin:0;
         padding:0;
         background-color: #f1f1f1;
-    
-    }
-   
-    .mint-tab-item-label {
+        .mint-tab-item-label {
         font-size:18px !important;
         }
-    .is-selected {
+        .is-selected {
         color:#ff6c00 !important;
         border:0 !important;
       }
-   
+    
+    }
 </style>

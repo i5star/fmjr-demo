@@ -1,7 +1,16 @@
 <template>
     <div class="index-goodlist">
-        <InvestDetailsGood :subjectName="detailsGoodLists.subjectName" :lendRate="detailsGoodLists.lendRate" :rewardRate="detailsGoodLists.rewardRate"
-            :lendAmt="detailsGoodLists.lendAmt" :investMoney="detailsGoodLists.investMoney" :lendCycleValue="detailsGoodLists.lendCycleValue"></InvestDetailsGood>
+        <InvestDetailsGood 
+        :subjectName="detailsGoodLists.subjectName" 
+        :lendRate="detailsGoodLists.lendRate" 
+        :rewardRate="detailsGoodLists.rewardRate"
+        :lendAmt="detailsGoodLists.lendAmt" 
+        :investMoney="detailsGoodLists.investMoney" 
+        :lendCycleValue="detailsGoodLists.lendCycleValue"
+        :publishDate="detailsGoodLists.publishDate"
+        :payBackDate="detailsGoodLists.payBackDate"
+        :planInterestDate="detailsGoodLists.planInterestDate"
+        ></InvestDetailsGood>
     </div>
 </template>
 
