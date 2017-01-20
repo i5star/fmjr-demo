@@ -29,5 +29,6 @@
         width: 100%;
         padding-bottom: 49px;
         background-color: #f1f1f1;
+        padding-bottom: 49px;
     }
 </style>

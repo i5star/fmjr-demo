@@ -1,8 +1,5 @@
 <template>
 	<div class="find">
-		<!--<header class="fm-find-header">
-    		<span class="find-header-title">发现</span>
-    	</header>-->
 		<mt-header fixed title="发现"></mt-header>
 		<div class="fm-find-nav">
 			<ul>
@@ -22,16 +19,20 @@
 				</li>
 			</ul>
 		</div>
-		<div class="fm-find-playCenter">
+		<div class="fm-find-playCenter"
+        	@click="entryClick"
+			>
 			<h2>
     	 		<span>活动中心</span>
     	 	</h2>
-			<a href="javascript:;">
-				<img src="../../assets/find_huodong01@2x.png" />
-			</a>
-			<a href="javascript:;">
-				<img src="../../assets/banner02.png" />
-			</a>
+			<div class="find-playCenter-banner" v-for="banner1 in banners">
+				<a :href="banner1.linkUrl" >
+					<img v-bind:src="banner1.picUrl"/>
+				</a>
+				<div class="find-playCenter-posit">
+					<img src="../../assets/find_hover@3x.png" alt="" />
+				</div>
+			</div> 
 		</div>
 		<div class="fm-find-main">
 			<a>
@@ -39,64 +40,49 @@
 			</a>
 		</div>
 		<div class="fm-find-center">
-			<div class="find-center-title page-loadmore-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-				<p v-for="item in list" class="page-loadmore-listitem">
-					{{ item }}
+			<div class="find-center-title page-loadmore-list" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+				<p v-for="item in medias" class="page-loadmore-listitem">
 					<a href="javascript">
-						<span class="find-center-span">【分秒资讯】</span><span class="find-center-span1">微信小程序正式上线，央行确定...</span><span class="find-center-span2"><img src="../../assets/find_angle_right@2x.png" alt="" /></span>
+						<span class="find-center-span1">{{item.articleTitle}}</span><span class="find-center-span2"><img src="../../assets/find_angle_right@2x.png" alt="" /></span>
 					</a>
 				</p>
-				<p class="page-loadmore-listitem">
-					<a href="javascript">
-						<span class="find-center-span">【分秒资讯】</span><span class="find-center-span1">微信小程序正式上线，央行确定...</span><span class="find-center-span2"><img src="../../assets/find_angle_right@2x.png" alt="" /></span>
-					</a>
-				</p>
-				<p class="page-loadmore-listitem">
-					<a href="javascript">
-						<span class="find-center-span">【分秒资讯】</span><span class="find-center-span1">微信小程序正式上线，央行确定...</span><span class="find-center-span2"><img src="../../assets/find_angle_right@2x.png" alt="" /></span>
-					</a>
-				</p>
-				<p class="page-loadmore-listitem">
-					<a href="javascript">
-						<span class="find-center-span">【分秒资讯】</span><span class="find-center-span1">微信小程序正式上线，央行确定...</span><span class="find-center-span2"><img src="../../assets/find_angle_right@2x.png" alt="" /></span>
-					</a>
-				</p>
-				<p class="page-loadmore-listitem">
-					<a href="javascript">
-						<span class="find-center-span">【分秒资讯】</span><span class="find-center-span1">微信小程序正式上线，央行确定...</span><span class="find-center-span2"><img src="../../assets/find_angle_right@2x.png" alt="" /></span>
-					</a>
-				</p>
+
 			</div>
+		</div>
+		<div class="fm-find-look">
+			<a href="javascript:;">查看更多</a>
 		</div>
 	</div>
 </template>
 <script>
+    import { mapState } from 'vuex';
 	import { InfiniteScroll } from 'mint-ui';
-	
-	export default {
-	    name: 'find',
-	    components: {
-        InfiniteScroll,
-    },
-    methods: {
-        loadMore() {
-            this.loading = true;
-            setTimeout(() => {
-                const last = this.list[this.list.length - 1];
-                for (let i = 1; i <= 10; i += 1) {
-                    this.list.push(last + i);
-                }
-                this.loading = false;
-	            }, 2500);
-        },
-    },
-	};
-</script>
 
+	export default {
+    name: 'find',
+		components: {
+			InfiniteScroll,
+		},
+		computed: mapState({
+			medias: state => state.find.mediaList,
+			banners: state => state.find.activeList,
+		}),
+		created() {
+			this.$store.dispatch('getMediaList');
+			this.$store.dispatch('getBanner');
+		},
+	methods: {
+            entryClick() {
+                this.$router.push('/entry');
+            },
+        },
+};
+</script>
 <style lang="scss">
- body {
-        font-family: "HiraginoSansGB-w3",Arial,Verdana,微软雅黑,黑体,serif;
-    }
+	body {
+		font-family: "HiraginoSansGB-w3", Arial, Verdana, 微软雅黑, 黑体, serif;
+	}
+	
 	a {
 		text-decoration: none;
 	}
@@ -140,6 +126,12 @@
 						width: 50px;
 						height: 50px;
 						padding-bottom: 15px;
+						display: -webkit-box;
+					    -webkit-box-flex: 1;
+					    -webkit-box-align: center;
+					    -webkit-box-pack: center;
+					    -webkit-box-orient: vertical;
+					    margin: auto;
 					}
 					&>span {
 						display: block;
@@ -153,7 +145,6 @@
 						font-size: 12px;
 						color: #999;
 					}
-					
 				}
 			}
 			&>.nav-li {
@@ -167,7 +158,7 @@
 		background: #fff;
 		margin-bottom: 10px;
 		&>h2 {
-			width: 375px;
+			width: 100%;
 			height: 54px;
 			background: url("../../assets/find_bg01@2x.png") center center no-repeat;
 			background-size: cover;
@@ -184,15 +175,19 @@
 				line-height: 56px;
 			}
 		}
-		&>a {
-			width: 100%;
+		&>.find-playCenter-banner{
+			position:relative;
+			&>a {
+				width: 100%;
 			&>img {
 				width: 100%;
 				height: 155px;
 				display: block;
 				margin-bottom: 10px;
 			}
+		  }
 		}
+		
 	}
 	/*fm-find-main*/
 	
@@ -200,7 +195,7 @@
 		background: #fff;
 		display: -webkit-box;
 		&>a {
-			width: 375px;
+			width: 100%;
 			height: 56px;
 			background: url("../../assets/find_bg01@2x.png") center center no-repeat;
 			background-size: cover;
@@ -216,37 +211,54 @@
 				-webkit-box-orient: horizontal;
 				padding-top: 20px;
 			}
-			
 		}
 	}
 	
 	.fm-find-center {
 		background: #fff;
+		padding-bottom: 20px;
 		&>.find-center-title {
 			width: 95%;
 			margin: auto;
 			&>p {
-				border-bottom: 1px solid #e5e5e5;
-				padding-top: 20px;
-				padding-bottom: 20px;
 				&>a {
+					padding-top: 20px;
+					padding-bottom: 40px;
+					border-bottom: 1px solid #e5e5e5;
+					display: block;
 					&>.find-center-span2 {
 						float: right;
-						&>img{
-							width:7px;
-							height:13px;
+						&>img {
+							width: 7px;
+							height: 13px;
 						}
 					}
-					&>.find-center-span {
-						font-size: 15px;
-						color: #ff3131;
-					}
 					&>.find-center-span1 {
+						width:90%;
 						font-size: 15px;
 						color: #000;
+						float:left;
+						text-overflow: -o-ellipsis-lastline;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 1;
+						-webkit-box-orient: vertical;
 					}
 				}
 			}
+		}
+	}
+	
+	.fm-find-look {
+		background: #fff;
+		&>a {
+			font-size: 15px;
+			color: #666;
+			padding-bottom: 15px;
+			display: -webkit-box;
+			-webkit-box-flex: 1;
+			-webkit-box-pack: center;
 		}
 	}
 </style>

@@ -6,15 +6,15 @@ import Invest from './pages/invest/invest.vue';
 import Find from './pages/find/find.vue';
 import Mine from './pages/mine/mine.vue';
 import InvestDetail from './pages/index/investDetails/investDetails.vue';
+import InvestAffirm from './pages/index/investDetails/investAffirm/investAffirm.vue';
+import Entry from './pages/find/entry/entryLogin.vue';
 
 const routers = new VueRouter({
-    routes: [
-        {
+    routes: [{
             path: '/main',
             component: Main,
             alias: '/',
-            children: [
-                {
+            children: [{
                     path: 'index',
                     alias: '',
                     component: Index,
@@ -34,9 +34,25 @@ const routers = new VueRouter({
             ],
         },
         {
-            path: '/investDetail',
+            path: '/investDetail/*',
             component: InvestDetail,
         },
+        {
+            path: '/investAffirm',
+            component: InvestAffirm,
+        },
+        {
+            path: '/entry',
+            component: Entry,
+        },
+        // {
+        //     path: '/vestDetails',
+        //     component: VestDetails,
+        // },
+        // {
+        //     path: '/vestDetails',
+        //     component: VestDetails,
+        // },
     ],
 });
 
