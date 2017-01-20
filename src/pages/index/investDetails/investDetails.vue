@@ -9,28 +9,28 @@
         <mt-navbar v-model="selected" class="vest-about">
             <mt-tab-item id="1">
                 <p>
-                    <img src="../../../assets/tz_miaoshu@3x.png" v-show="selected !== 1">
+                    <img src="../../../assets/tz_miaoshu@3x.png" v-show="selected != 1">
                     <img src="../../../assets/tz_miaoshuhover@3x.png" v-show="selected == 1">
                 </p>
                 <p>项目描述</p>
             </mt-tab-item>
             <mt-tab-item id="2">
                 <p>
-                    <img src="../../../assets/tz_fengkong@3x.png" v-show="selected !== 2">
+                    <img src="../../../assets/tz_fengkong@3x.png" v-show="selected != 2">
                     <img src="../../../assets/tz_fengkonghover@3x.png" v-show="selected == 2">
                 </p>
                 <p>风控措施</p>
             </mt-tab-item>
             <mt-tab-item id="3">
                 <p>
-                    <img src="../../../assets/tz_ziliao@3x.png"  v-show="selected !== 3">
+                    <img src="../../../assets/tz_ziliao@3x.png" v-show="selected != 3">
                     <img src="../../../assets/tz_ziliaohover@3x.png" v-show="selected == 3">
                 </p>
                 <p>相关资料</p>
             </mt-tab-item>
             <mt-tab-item id="4">
                 <p>
-                    <img src="../../../assets/tz_jilu@3x.png" v-show="selected !== 4">
+                    <img src="../../../assets/tz_jilu@3x.png" v-show="selected != 4">
                     <img src="../../../assets/tz_jiluhover@3x.png" v-show="selected == 4">
                 </p>
                 <p>投资记录</p>
@@ -51,7 +51,7 @@
                 <mt-cell v-for="n in 6" :title="'选项 ' + n" />
             </mt-tab-container-item>
         </mt-tab-container>
-        </div>
+    </div>
 </template>
 
 <script>
