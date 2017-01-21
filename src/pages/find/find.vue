@@ -54,6 +54,7 @@
 		</div>
 	</div>
 </template>
+
 <script>
     import { mapState } from 'vuex';
 	import { InfiniteScroll } from 'mint-ui';
