@@ -51,9 +51,7 @@
     .invest-page {
         width: 100%;
         height: 100%;
-        margin: 0;
-        padding: 0;
-        padding-bottom: 49px;
+        overflow-y: scroll;
         background-color: #f1f1f1;
         .mint-tab-item-label {
             font-size: 18px !important;

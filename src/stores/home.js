@@ -42,6 +42,9 @@ const home = {
         setShengXinGoodList(state, shengXinGoodList) {
             state.shengXinGoodList = shengXinGoodList;
         },
+        addShengXinGoodList(state, shengXinGoodList) {
+            state.shengXinGoodList.push(...shengXinGoodList);
+        },
         // 分秒月盈
         setYueYingGoodList(state, yueYingGoodList) {
             state.yueYingGoodList = yueYingGoodList;
@@ -76,7 +79,11 @@ const home = {
         // 分秒省心
         getShengXinGoodList(context) {
             vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=1&pageSize=5&subjectProdType=5').then((response) => {
-                context.commit('setShengXinGoodList', response.data.data);
+                if (context.state.shengXinGoodList.length === 0) {
+                    context.commit('setShengXinGoodList', response.data.data);
+                    return;
+                }
+                context.commit('addShengXinGoodList', response.data.data);
             });
         },
         // 分秒月盈

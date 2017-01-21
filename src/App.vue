@@ -26,10 +26,6 @@
         list-style: none;
     }
     
-    #app {
-        overflow-y: scroll;
-    }
-    
     .fix-float {
         &::after {
             content: ' ';
