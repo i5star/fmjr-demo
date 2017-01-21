@@ -11,6 +11,7 @@
         :payBackDate="detailsGoodLists.payBackDate"
         :planInterestDate="detailsGoodLists.planInterestDate"
         :overDate="detailsGoodLists.overDate"
+        :status="detailsGoodLists.status"
         ></InvestDetailsGood>
     </div>
 </template>

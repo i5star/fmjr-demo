@@ -10,6 +10,8 @@ const home = {
         relativeInformationList: [],
         depositsHistoryList: [],
         availableBalance: 0,
+        shengXinGoodList: [],
+        yueYingGoodList: [],
     },
     mutations: {
         setGoodList(state, goodList) {

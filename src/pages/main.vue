@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-div">
         <router-view></router-view>
         <TabBar></TabBar>
     </div>
@@ -15,3 +15,9 @@
         },
     };
 </script>
+<style>
+    .main-div{
+        width:100%;
+        height:100%;
+    }
+</style>

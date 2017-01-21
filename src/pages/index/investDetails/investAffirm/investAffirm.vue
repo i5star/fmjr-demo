@@ -1,7 +1,58 @@
 <template>
-<div>
-    <ComHead :pageTitle="pageHead"></ComHead>
-</div>
+    <div class="invest-affirm">
+        <ComHead :pageTitle="pageHead"></ComHead>
+        <div class="left-over fix-float">
+            <span>分秒月盈WX0829期剩余金额</span>
+            <span class="mainColor">200000.00元</span>
+        </div>
+        <div class="invest-detail">
+            <div class="invest-detail-main">
+            <div class="invest-detail-rate">
+                <p>年化收益率: <span class="mainColor">10%</span> </p>
+                <p>投资期限: <span class="mainColor">6个月</span></p>
+            </div>
+            <div class="invest-money">
+                <p>投资金额(元) <span>100元起投,100的倍数递增...</span></p>
+                <div class="fix-float">
+                    <span><img src="../../../../assets/tzqr_jian@2x.png" @click="subValue"></span>
+                    <input type="number" v-model="investValue" class="mainColor">
+                    <span><img src="../../../../assets/tzqr_jia@2x.png" @click="addValue"></span>
+                </div>
+                <p>投资收益(元): <span class="mainColor">200.00</span></p>
+               
+            </div>
+             <p class="accountRest">账户余额(元): <span class="mainColor">0.00</span></p>
+             </div>
+            
+            <div class="available-red-package">
+                <div class="discount" style="display: none">
+                    <ul class="discount-wrap fix-float">
+                        <li class="discount-deduction"></li>
+                        <li class="discount-deduction"></li>
+                        <li class="discount-raise"></li>
+                        <li class="discount-raise"></li>
+                    </ul>   
+                </div>
+                <p>可用红包<span class="mainColor">88.00</span></p>
+                <p>已按最优方案匹配红包券</p>
+            </div>
+            <div>
+                <div class="protocol">
+                    <input type="checkbox" checked>
+                    <span>我已阅读并同意分秒金融<a href="#">《借贷及服务协议》</a></span>
+                </div>
+                <div class="recharge-btn affirm-btn" v-show="false">
+                    <p>账户余额不足</p>
+                    <p>立即充值</p>
+                </div>
+                <div class="invest-btn affirm-btn">
+                    <p>开启财富之旅</p>
+                    <p>立即投资</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </template>
 
 <script>
@@ -12,13 +63,155 @@
         data() {
             return {
                 pageHead: '分秒YY100-20170103期',
+                investValue: 1000.00,
             };
         },
         components: {
             ComHead,
         },
+        methods: {
+            addValue(){
+                this.investValue+=1000;
+            },
+            subValue(){
+                if(this.investValue<=0){
+                    this.investValue=0;
+                }else{
+                    this.investValue-=1000;
+                }
+            }
+        },
     };
 </script>
-<style>
-
+<style lang="scss">
+.invest-affirm {
+    width:100%;
+    height:100%;
+    $allColor: #ff6c00;
+   .left-over {
+        padding:20px 20px;
+        border-top:4px solid #f1f1f1;
+        border-bottom:5px solid #f1f1f1;
+        font-size:15px;
+        span:nth-of-type(1) {
+            color:#333;
+            float:left;
+        }
+        span:nth-of-type(2) {
+            color: $allColor;
+            float:right;
+        }
+    }
+    .invest-detail {
+        font-size:15px;
+        color:#666;
+        padding: 20px 0px 0px;
+        .invest-detail-main {
+            padding: 0px 20px;
+        }
+        .mainColor{
+            color: $allColor;
+        }
+        .invest-detail-rate {
+            border-bottom:1px solid #e5e5e5;
+            p:nth-of-type(2){
+                padding:20px 0px;
+            }
+        }
+        .invest-money {
+            padding:20px 20px;
+            p:nth-of-type(1) {
+                padding-bottom:25px;
+                span{
+                    color: #999;
+                }
+            }
+            div{
+                img{
+                    width:40px;
+                    height:40px;
+                    float:left;
+                }
+                input{
+                    width:60%;
+                    padding:5px;
+                    height:25px;
+                    float:left;
+                    margin: 2px 5px;
+                    border:1px solid #f1f1f1;
+                    text-align: right;
+                }
+            }
+            p:nth-of-type(2) {
+                padding:20px 50px 0px;
+            }
+        }
+        .accountRest{
+            border-top:1px solid #e5e5e5;
+            padding:20px 0px;
+            font-size:15px;
+        }
+        .available-red-package {
+            font-size:15px;
+            padding:15px 20px;
+            border-top:5px solid #e5e5e5;
+            p{
+                padding:5px 0px;
+            }
+            p:nth-of-type(1) {
+                margin-top: 10px;
+            }
+            p:nth-of-type(2) {
+                font-size:13px;
+                color: #999;
+            }
+        }
+        .protocol{
+            background-color: #f1f1f1;
+            padding: 20px;
+            color: #3fAdF9;
+            font-size:13px;
+            a{
+                 color: #3fAdF9;
+            }
+        }
+        .discount {
+            border-bottom:1px solid #e5e5e5;
+            .discount-wrap {
+                li{
+                    float:left;
+                    width: 134px;
+                    height: 68px;
+                    margin-right:25px;
+                    margin-bottom: 10px;
+                }
+                .discount-deduction {
+                    background: url(../../../../assets/tzqr_dikou@3x.png) center center no-repeat;
+                    background-size: 100% 100%;
+                }
+                .discount-raise {
+                    background: url(../../../../assets/tzqr_jiaxi@3x.png) center center no-repeat;
+                    background-size: 100% 100%;
+                }
+            }
+        }
+        .affirm-btn {
+            padding: 20px;
+            text-align: center;
+            p:nth-of-type(1) {
+                color: #999;
+                font-size: 12px;
+                padding-bottom: 10px;
+            }
+            p:nth-of-type(2) {
+                color: #fff;
+                font-size: 18px;
+                height:47px;
+                line-height: 47px;
+                background-color: $allColor;
+                border-radius:3px;
+            }
+        }
+    }
+}
 </style>
