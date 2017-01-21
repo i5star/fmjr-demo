@@ -1,27 +1,28 @@
 <template>
     <div class="vest-good">
-        <div>
-            <span>{{ subjectName }}</span>
-            <span>按月付息，到期还本</span>
-        </div>
-        <div>
-            <p>
-                <span>{{ lendRate | toFixed(2) }}</span><span v-show="rewardRate>0" class="rewardRate">+{{ rewardRate }}</span>
-            </p>
-            <p>年化收益(%)</p>
-        </div>
+        <div class="vest-good-detail" style="background-color: #fff;">
+<div class="good-detail-title">
+    <span>{{ subjectName }}</span>
+    <span>按月付息，到期还本</span>
+</div>
+<div class="good-detail-rate">
+    <p>
+        <span>{{ lendRate | toFixed(2) }}</span><span v-show="rewardRate>0" class="rewardRate">+{{ rewardRate }}</span>
+    </p>
+    <p>年化收益(%)</p>
+</div>
 
-        <div>
-            <div class="fix-float">
-                <div class="allLength">
-                    <div :style="{ width: `${investMoney / lendAmt * 100}%` }" class="rate"></div>
-                </div>
-                <span>{{ investMoney / lendAmt * 100 | toFixed(0) }}%</span>
-            </div>
+<div class="good-detail-percent">
+    <div class="fix-float">
+        <div class="allLength">
+            <div :style="{ width: `${investMoney / lendAmt * 100}%` }" class="rate"></div>
         </div>
-        <ul class="fix-float">
-            <li>
-                <p style="font-size:23px">{{ lendCycleValue }}</p>
+        <span>{{ investMoney / lendAmt * 100 | toFixed(0) }}%</span>
+    </div>
+</div>
+<ul class="fix-float">
+    <li>
+        <p style="font-size:23px">{{ lendCycleValue }}</p>
 <p>投资期限（月）</p>
 </li>
 <li>
@@ -36,22 +37,31 @@
 <div class="invest-day">
     <span>发布日期：{{ publishDate | todate }}</span>&nbsp;&nbsp;&nbsp;
     <span>还款日期：{{ payBackDate | todate }}</span>
-    <p>剩余时间：{{ overDate }}</p>
+    <p>剩余时间：{{ restTime }}</p>
 </div>
-
+</div>
 <div class="invest-process fix-float">
     <div class="invest-process-active">
-        <p><img src="../../../assets/tz_datehover@3x.png"></p>
+        <p>
+            <img src="../../../assets/tz_date@3x.png" v-show="status < 5">
+            <img src="../../../assets/tz_datehover@3x.png" v-show="status>=5">
+        </p>
         <p>预计起息日</p>
         <p>{{ planInterestDate }}</p>
     </div>
-    <div>
-        <p><img src="../../../assets/tz_zq@3x.png"></p>
+    <div :class="{'invest-process-active': status === 6}">
+        <p>
+            <img src="../../../assets/tz_zq@3x.png" v-show="status!=6">
+            <img src="../../../assets/tz_zqhover@3x.png" v-show="status==6">
+        </p>
         <p>拼命赚钱</p>
         <p>收益快速增长中</p>
     </div>
-    <div>
-        <p><img src="../../../assets/tz_hk@3x.png"></p>
+    <div :class="{'invest-process-active': status === 8}">
+        <p>
+            <img src="../../../assets/tz_hk@3x.png" v-show="status<=8">
+            <img src="../../../assets/tz_hkhover@3x.png" v-show="status==8">
+        </p>
         <p>预计到期日</p>
         <p>{{ payBackDate }}</p>
     </div>
@@ -64,8 +74,15 @@
 <script>
     import moment from 'moment';
 
+    // console.log(moment.duration(818373532).get('days'));
+
     export default {
         name: 'vestDetailsGood',
+        data() {
+            return {
+                restTime:0,
+            };
+        },
         props: {
             subjectName: {
                 type: String,
@@ -97,6 +114,9 @@
             overDate: {
                 type: String,
             },
+            status: {
+                type: Number,
+            },
         },
         filters: {
             toFixed(value, digit) {
@@ -111,12 +131,22 @@
             fromNow(value) {
                 return value.to(new Date());
             },
-            // countDown(value) {
-            //     return moment(value).format('MMMM Do YYYY, h:mm:ss a');
-            // },
         },
-        computed() {
-            console.log(this.overDate - new Date());
+        created() {
+            var restEvent=setInterval(() => {
+                const time = (new Date(this.overDate) - Date.now());
+                if(time>0){
+                const day = moment.duration(time).get('days');
+                const hour = moment.duration(time).get('hours');
+                const minutes = moment.duration(time).get('minutes');
+                const seconds = moment.duration(time).get('seconds');
+                this.restTime = day + '天' + hour + '小时' + minutes + '分' + seconds + '秒';
+                }else{
+                    clearInterval(restEvent);
+                    this.restTime = 0+ '天' + 0 + '小时' +0 + '分' + 0 + '秒';
+                }
+                return this.restTime;
+            }, 1000);
         },
     };
 </script>
@@ -124,14 +154,12 @@
 <style lang="scss">
     .vest-good {
         $allColor: #ff6c00;
-        padding: 15px 0px;
-        background-color: white;
         .rewardRate {
             font-size: 24px ! important;
         }
         // 上面部分
-        &> :nth-child(1) {
-            padding: 0 20px;
+        .good-detail-title{
+            padding: 15px 20px 0px;
             $labelColor: #3fadf9;
             &>span:nth-of-type(1) {
                 font-size: 15px;
@@ -150,7 +178,7 @@
             }
         }
         // 中间部分
-        &> :nth-child(2) {
+        .good-detail-rate {
             padding: 0 20px;
             text-align: center;
             color: #666;
@@ -165,7 +193,7 @@
                 }
             }
         }
-        &> :nth-child(3) {
+       .good-detail-percent{
             padding: 13px 20px 8px;
             .allLength {
                 width: 85%;
@@ -202,6 +230,7 @@
         .invest-day {
             border-top: 1px solid #e5e5e5;
             padding: 20px 20px;
+            background-color: #fff;
             font-size: 12px;
             span {
                 color: #999;
@@ -212,14 +241,17 @@
             }
         }
         .invest-process {
-            text-align: center;
+             text-align: center;
+             margin:5px 0; 
+             padding:15px 0;
+             background-color: #fff;
             div {
                 width: 33%;
                 float: left;
                 font-size: 13px;
                 color: #999;
                 &>p:nth-of-type(3) {
-                    padding: 7px 0px;
+                    padding-top: 7px;
                 }
             }
             .invest-process-active {

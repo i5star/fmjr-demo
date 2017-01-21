@@ -10,6 +10,8 @@ const home = {
         relativeInformationList: [],
         depositsHistoryList: [],
         availableBalance: 0,
+        shengXinGoodList: [],
+        yueYingGoodList: [],
     },
     mutations: {
         setGoodList(state, goodList) {
@@ -66,8 +68,8 @@ const home = {
                 context.commit('setNotices', response.data.data[0]);
             });
         },
-        getDetailsGoodList(context, id) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view?id=' + id.id).then((response) => {
+        getDetailsGoodList(context) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view?id=310012').then((response) => {
                 context.commit('setDetailsGoodList', response.data.data);
             });
         },

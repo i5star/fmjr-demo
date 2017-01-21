@@ -145,13 +145,13 @@
             this.$store.dispatch('getRelativeInformation');
             this.$store.dispatch('getDepositsHistory');
             this.$store.dispatch('getAvailableBalance');
-            console.log(this.availableBalances);
         },
     };
 </script>
 <style lang="scss">
     .invest-details-page {
         padding-bottom: 100px;
+        background-color: #f1f1f1;
         .vest-about {
             color: #666;
             border-bottom: 1px solid #e5e5e5;
@@ -218,7 +218,9 @@
         }
         .invest-btn {
             padding: 15px;
-            background-color: #f1f1f1;
+            background-color:#fff;
+            margin-top:10px;
+            border-top:5px solid #e5e5e5;
             p {
                 font-size: 12px;
                 color: #666;
@@ -281,6 +283,9 @@
                     width: 120px;
                 }
             }
+        }
+        .mint-tab-container-wrap{
+            background-color: #fff;
         }
     }
 </style>
