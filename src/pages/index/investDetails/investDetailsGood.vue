@@ -73,9 +73,6 @@
 
 <script>
     import moment from 'moment';
-
-    // console.log(moment.duration(818373532).get('days'));
-
     export default {
         name: 'vestDetailsGood',
         data() {
@@ -147,6 +144,9 @@
                 }
                 return this.restTime;
             }, 1000);
+        },
+        computed() {
+            console.log(this.overDate - new Date());
         },
     };
 </script>

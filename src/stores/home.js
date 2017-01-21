@@ -68,8 +68,8 @@ const home = {
                 context.commit('setNotices', response.data.data[0]);
             });
         },
-        getDetailsGoodList(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view?id=310012').then((response) => {
+        getDetailsGoodList(context, id) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/view?id=' + id.id).then((response) => {
                 context.commit('setDetailsGoodList', response.data.data);
             });
         },
