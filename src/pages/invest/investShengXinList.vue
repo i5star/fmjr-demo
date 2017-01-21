@@ -3,6 +3,7 @@
         <Good v-for="good of shengXinGoodList" :lendDate="good.lendDate" :subjectName="good.subjectName" :lendRate="good.lendRate"
             :rewardRate="good.rewardRate" :lendAmt="good.lendAmt" :investMoney="good.investMoney">
         </Good>
+        <div v-show="showAnimatie">加载动画</div>
     </div>
 </template>
 
@@ -17,7 +18,9 @@
 
     export default {
         data() {
-            return {};
+            return {
+                showAnimatie: false,
+            };
         },
         name: 'InvestShengXinList',
         components: {
@@ -33,14 +36,12 @@
         methods: {
             loadMore() {
                 this.loading = true;
+                this.showAnimatie = true;
                 setTimeout(() => {
-                    const last = this.shengXinGoodList[this.shengXinGoodList.length - 1];
-                    console.log(this.shengXinGoodList.length);
-                    for (let i = 1; i <= 2; i += 1) {
-                        this.shengXinGoodList.push(last + i);
-                    }
-                    console.log(this.shengXinGoodList.length);
-                    this.loading = false;
+                    this.$store.dispatch('getShengXinGoodList').then(() => {
+                        this.loading = false;
+                        this.showAnimatie = false;
+                    });
                 }, 2500);
                 console.log('load more');
             },

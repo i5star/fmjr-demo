@@ -27,8 +27,8 @@
 <style lang="scss">
     .index {
         width: 100%;
-        padding-bottom: 49px;
+        height: 100%;
+        overflow-y: scroll;
         background-color: #f1f1f1;
-        padding-bottom: 49px;
     }
 </style>
