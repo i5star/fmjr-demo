@@ -16,13 +16,14 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import {
+        mapState,
+    } from 'vuex';
     import InvestDetailsGood from './investDetailsGood.vue';
 
     export default {
         data() {
-            return {
-            };
+            return {};
         },
         name: 'vestDetailsGoodList',
         components: {
@@ -32,10 +33,13 @@
             detailsGoodLists: state => state.home.detailsGoodList,
         }),
         created() {
-            this.$store.dispatch('getDetailsGoodList');
+            this.$store.dispatch('getDetailsGoodList', {
+                id: this.$route.params[0],
+            });
         },
     };
 </script>
 
 <style lang="scss">
+
 </style>

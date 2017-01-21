@@ -1,8 +1,6 @@
 <template>
     <div class="invest-page">
         <mt-header :title="title" class="com-header">
-            <router-link to="/index" slot="left">
-            </router-link>
         </mt-header>
         <mt-navbar v-model="selected">
             <mt-tab-item id="1">分秒月盈</mt-tab-item>
@@ -11,18 +9,23 @@
         <!-- tab-container -->
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="1">
-                <GoodList></GoodList>
+                <InvestYueYingList></InvestYueYingList>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
-                <GoodList></GoodList>
+                 <InvestShengXinList></InvestShengXinList>
             </mt-tab-container-item>
         </mt-tab-container>
     </div>
 </template>
 
 <script>
-    import { Header, Navbar, TabItem } from 'mint-ui';
-    import GoodList from '../index/goodList.vue';
+    import {
+        Header,
+        Navbar,
+        TabItem,
+    } from 'mint-ui';
+    import InvestShengXinList from './investShengXinList.vue';
+    import InvestYueYingList from './investYueYingList.vue';
 
     const MintHeader = Header;
     export default {
@@ -35,7 +38,8 @@
             };
         },
         components: {
-            GoodList,
+            InvestShengXinList,
+            InvestYueYingList,
             MintHeader,
             Navbar,
             TabItem,
@@ -47,16 +51,16 @@
     .invest-page {
         width: 100%;
         height: 100%;
-        margin:0;
-        padding:0;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 49px;
         background-color: #f1f1f1;
         .mint-tab-item-label {
-        font-size:18px !important;
+            font-size: 18px !important;
         }
         .is-selected {
-        color:#ff6c00 !important;
-        border:0 !important;
-      }
-    
+            color: #ff6c00 !important;
+            border: 0 !important;
+        }
     }
 </style>

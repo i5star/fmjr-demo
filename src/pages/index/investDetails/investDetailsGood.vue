@@ -6,7 +6,7 @@
         </div>
         <div>
             <p>
-                <span>{{ lendRate | toFixed(2) }}</span><span v-show="rewardRate>0">+{{ rewardRate }}</span>
+                <span>{{ lendRate | toFixed(2) }}</span><span v-show="rewardRate>0" class="rewardRate">+{{ rewardRate }}</span>
             </p>
             <p>年化收益(%)</p>
         </div>
@@ -111,6 +111,9 @@
             fromNow(value) {
                 return value.to(new Date());
             },
+            // countDown(value) {
+            //     return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+            // },
         },
         computed() {
             console.log(this.overDate - new Date());
@@ -123,6 +126,9 @@
         $allColor: #ff6c00;
         padding: 15px 0px;
         background-color: white;
+        .rewardRate {
+            font-size: 24px ! important;
+        }
         // 上面部分
         &> :nth-child(1) {
             padding: 0 20px;

@@ -1,14 +1,13 @@
 <template>
     <div class="index-goodlist">
         <Good
-            v-for="good of goods"
+            v-for="good of yueYingGoodList"
             :lendDate="good.lendDate"
             :subjectName="good.subjectName"
             :lendRate="good.lendRate"
             :rewardRate="good.rewardRate"
             :lendAmt="good.lendAmt"
             :investMoney="good.investMoney"
-            :id="good.id"
         ></Good>
     </div>
 </template>
@@ -17,21 +16,21 @@
     import {
         mapState,
     } from 'vuex';
-    import Good from './good.vue';
+    import Good from '../index/good.vue';
 
     export default {
         data() {
             return {};
         },
-        name: 'GoodList',
+        name: 'InvestShengXinList',
         components: {
             Good,
         },
         computed: mapState({
-            goods: state => state.home.goodList,
+            yueYingGoodList: state => state.home.yueYingGoodList,
         }),
         created() {
-            this.$store.dispatch('getGoodList');
+            this.$store.dispatch('getYueYingGoodList');
         },
     };
 </script>

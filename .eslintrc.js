@@ -33,6 +33,9 @@ module.exports = {
     'global-require': 0,
     'import/extensions': 0,
     'no-param-reassign': 0,
+    'indent': 0,
+    'no-tabs': 0,
+    'no-param-reassign': 0,
     'eol-last': 0
   }
 }

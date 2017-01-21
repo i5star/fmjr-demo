@@ -59,6 +59,9 @@
             investMoney: {
                 type: Number,
             },
+            id: {
+                type: Number,
+            },
         },
         filters: {
             toFixed(value, digit) {
@@ -70,7 +73,7 @@
         },
         methods: {
             handleClick() {
-                this.$router.push('/investDetail');
+                this.$router.push(`/investDetail/${this.id}`);
             },
         },
     };
@@ -79,95 +82,91 @@
 <style lang="scss">
     .index-good {
         $allColor: #ff6c00;
-        padding:10px 15px;
+        padding: 10px 15px;
         background-color: white;
         margin-top: 5px;
-
         // 上面部分
-        & > :nth-child(1) {
+        &> :nth-child(1) {
             $labelColor: #3fadf9;
-            & > div {
+            &>div {
                 display: inline-block;
                 width: 48px;
                 height: 22px;
                 border-radius: 5px;
                 border: 1px solid $labelColor;
                 text-align: center;
-                & > span {
+                &>span {
                     color: $labelColor;
                     font-size: 13px;
                     line-height: 22px;
                 }
             }
-            & > span {
+            &>span {
                 font-size: 13px;
                 color: 333;
             }
         }
-
         // 下面部分
-        & > :nth-child(2) {
+        &> :nth-child(2) {
             // 下左部分
-            & > :nth-child(1) {
+            &> :nth-child(1) {
                 float: left;
                 width: 40%;
-                & > :nth-child(1) {
+                &> :nth-child(1) {
                     color: $allColor;
                     font-size: 18px;
-                    padding:15px 0px 13px;
-                    & > strong {
+                    padding: 15px 0px 13px;
+                    &>strong {
                         font-size: 30px;
                     }
                 }
-                & > :nth-child(2) {
+                &> :nth-child(2) {
                     font-size: 13px;
                     color: #666;
                 }
             }
-
             // 下右部分
-            & > :nth-child(2) {
+            &> :nth-child(2) {
                 $rateTextWidth: 45px;
-
                 float: right;
-                width:60%;
-                & > div {
-                    padding:15px $rateTextWidth 13px 0px;
-                    & > :nth-child(1) {
+                width: 60%;
+                &>div {
+                    padding: 15px $rateTextWidth 13px 0px;
+                    &> :nth-child(1) {
                         font-size: 13px;
                         color: #666;
-                        & > span {
+                        &>span {
                             color: $allColor;
-                            & > strong {
+                            &>strong {
                                 font-size: 18px;
                             }
                         }
                     }
-                    & > :nth-child(2) {
-                        & > :nth-child(1) {
+                    &> :nth-child(2) {
+                        &> :nth-child(1) {
                             width: 100%;
                             height: 2.5px;
-                            background-color: #f1f1f1; 
-                            & > div {
+                            background-color: #f1f1f1;
+                            &>div {
                                 width: 100%;
                                 height: 2.5px;
-                                margin:5px 5px 15px 0px;
+                                margin: 5px 5px 15px 0px;
                                 background-color: $allColor;
                             }
                         }
-                        & > :nth-child(2) {
+                        &> :nth-child(2) {
                             float: right;
                             margin-right: -$rateTextWidth;
                             margin-top: -11px;
-                            color :#999;
+                            color: #999;
                         }
                     }
-                    & > :nth-child(3) {
+                    &> :nth-child(3) {
                         font-size: 13px;
                         color: #666;
                         text-align: right;
                         padding-top: 8px;
-                    margin-right: -$rateTextWidth;
+                        margin-right: -$rateTextWidth;
                     }
                 }
             }
