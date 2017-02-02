@@ -49,17 +49,17 @@
         <p>预计起息日</p>
         <p>{{ planInterestDate }}</p>
     </div>
-    <div :class="{'invest-process-active': status === 6}">
+    <div :class="{'invest-process-active': status >= 6}">
         <p>
-            <img src="../../../assets/tz_zq@3x.png" v-show="status!=6">
-            <img src="../../../assets/tz_zqhover@3x.png" v-show="status==6">
+            <img src="../../../assets/tz_zq@3x.png" v-show="status<6">
+            <img src="../../../assets/tz_zqhover@3x.png" v-show="status>=6">
         </p>
         <p>拼命赚钱</p>
         <p>收益快速增长中</p>
     </div>
     <div :class="{'invest-process-active': status === 8}">
         <p>
-            <img src="../../../assets/tz_hk@3x.png" v-show="status<=8">
+            <img src="../../../assets/tz_hk@3x.png" v-show="status<8">
             <img src="../../../assets/tz_hkhover@3x.png" v-show="status==8">
         </p>
         <p>预计到期日</p>
@@ -77,7 +77,7 @@
         name: 'vestDetailsGood',
         data() {
             return {
-                restTime:0,
+                restTime: 0,
             };
         },
         props: {
@@ -114,6 +114,9 @@
             status: {
                 type: Number,
             },
+            id: {
+                type: Number,
+            },
         },
         filters: {
             toFixed(value, digit) {
@@ -130,23 +133,20 @@
             },
         },
         created() {
-            var restEvent=setInterval(() => {
+            const restEvent = setInterval(() => {
                 const time = (new Date(this.overDate) - Date.now());
-                if(time>0){
-                const day = moment.duration(time).get('days');
-                const hour = moment.duration(time).get('hours');
-                const minutes = moment.duration(time).get('minutes');
-                const seconds = moment.duration(time).get('seconds');
-                this.restTime = day + '天' + hour + '小时' + minutes + '分' + seconds + '秒';
-                }else{
+                if (time > 0) {
+                    const day = moment.duration(time).get('days');
+                    const hour = moment.duration(time).get('hours');
+                    const minutes = moment.duration(time).get('minutes');
+                    const seconds = moment.duration(time).get('seconds');
+                    this.restTime = day + '天' + hour + '小时' + minutes + '分' + seconds + '秒';
+                } else {
                     clearInterval(restEvent);
-                    this.restTime = 0+ '天' + 0 + '小时' +0 + '分' + 0 + '秒';
+                    this.restTime = 0 + '天' + 0 + '小时' + 0 + '分' + 0 + '秒';
                 }
                 return this.restTime;
             }, 1000);
-        },
-        computed() {
-            console.log(this.overDate - new Date());
         },
     };
 </script>
@@ -158,7 +158,7 @@
             font-size: 24px ! important;
         }
         // 上面部分
-        .good-detail-title{
+        .good-detail-title {
             padding: 15px 20px 0px;
             $labelColor: #3fadf9;
             &>span:nth-of-type(1) {
@@ -193,7 +193,7 @@
                 }
             }
         }
-       .good-detail-percent{
+        .good-detail-percent {
             padding: 13px 20px 8px;
             .allLength {
                 width: 85%;
@@ -241,10 +241,10 @@
             }
         }
         .invest-process {
-             text-align: center;
-             margin:5px 0; 
-             padding:15px 0;
-             background-color: #fff;
+            text-align: center;
+            margin: 5px 0;
+            padding: 15px 0;
+            background-color: #fff;
             div {
                 width: 33%;
                 float: left;

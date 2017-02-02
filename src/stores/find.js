@@ -20,9 +20,8 @@ const find = {
             });
         },
         getBanner(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/banner/banners?count=2').then((response) => {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/banner/banners?count=4').then((response) => {
                 context.commit('setBanner', response.data.data);
-                console.log(response.data.data);
             });
         },
     },

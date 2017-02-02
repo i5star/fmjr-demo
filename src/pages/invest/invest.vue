@@ -60,5 +60,8 @@
             color: #ff6c00 !important;
             border: 0 !important;
         }
+        .com-header {
+            background-color: white;
+        }
     }
 </style>

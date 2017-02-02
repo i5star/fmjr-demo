@@ -24,14 +24,14 @@
 </script>
 <style lang="scss">
     .com-header {
-        height: 30px;
+        height: 30px !important;
         padding: 5px;
         text-align: center;
         line-height: 30px;
         background-color: #fff;
         font-size: 18px;
         color: #333;
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5 !important;
         /*overflow: hidden;*/
         .backBtn {
             height: 20px;

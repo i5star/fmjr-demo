@@ -16,7 +16,7 @@
     #app {
         width: 100%;
         height: 100%;
-        overflow: hidden;
+        /*overflow: hidden;*/
         font-family: "HiraginoSansGB-w3", Arial, Verdana, 微软雅黑, 黑体, serif;
     }
     

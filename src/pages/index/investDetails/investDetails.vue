@@ -72,8 +72,8 @@
             <mt-tab-container-item id="4">
                 <div class="invest-text-wrap">
                     <div class="invest-total">
-                        <p>已投资总额： <span>200000.00元</span> </p>
-                        <p>已投资总人数：<span>48人</span></p>
+                        <p>已投资总额： <span>{{detailsGoodLists.investMoney }}元</span> </p>
+                        <p>已投资总人数：<span>{{depositsHistoryLists.totalCount?depositsHistoryLists.totalCount:0}}人</span></p>
                     </div>
                     <div  class="invest-record">
                             <ul class="record-title fix-float">
@@ -81,7 +81,7 @@
                                 <li>投资金额</li>
                                 <li class="thLong">投资时间</li>
                             </ul>
-                            <ul class="record-list fix-float"  v-for="item in depositsHistoryLists">
+                            <ul class="record-list fix-float"  v-for="item in depositsHistoryLists.data">
                                 <li>{{ item.mobile }}</li>
                                 <li>{{ item.buyCount }}</li>
                                 <li class="thLong">{{ item.buyDate }}</li>
@@ -93,7 +93,8 @@
         </mt-tab-container>
         <div class="invest-btn">
             <p>账户可用余额：<span>{{ availableBalances }}元</span></p>
-            <mt-button type="default" class="investBtn"  @click="handleJump">立即投资</mt-button>
+            <mt-button type="default" class="investBtn"  @click="handleJump" v-show="isLogin">立即投资</mt-button>
+            <mt-button type="default" class="investBtn"  @click="handleJumpLogin" v-show="!isLogin">立即登录</mt-button>
         </div>
     </div>
 </template>
@@ -117,6 +118,7 @@
             return {
                 title: '投资详情',
                 selected: '1',
+                isLogin: false,
             };
         },
         components: {
@@ -131,21 +133,49 @@
                 this.$router.back();
             },
             handleJump() {
-                this.$router.push('/investAffirm');
+                this.$router.push(`/investAffirm/${this.$route.params[0]}`);
+            },
+            handleJumpLogin() {
+                this.$router.push(`/entry`);
             },
         },
         computed: mapState({
+            detailsGoodLists: state => state.home.detailsGoodList,
             projectDescriptionLists: state => state.home.projectDescriptionList,
             relativeInformationLists: state => state.home.relativeInformationList,
             depositsHistoryLists: state => state.home.depositsHistoryList,
             availableBalances: state => state.home.availableBalance,
         }),
         created() {
-            this.$store.dispatch('getProjectDescription');
-            this.$store.dispatch('getRelativeInformation');
-            this.$store.dispatch('getDepositsHistory');
-            this.$store.dispatch('getAvailableBalance');
+            // this.$cookie.set('acctKey', 'f4b37ae9978cb85c0529de792b87f115', {
+            //     expires: '7D',
+            // });
+            this.$store.dispatch('getDetailsGoodList', {
+                id: this.$route.params[0],
+            });
+            this.$store.dispatch('getProjectDescription', {
+                id: this.$route.params[0],
+            });
+            this.$store.dispatch('getRelativeInformation', {
+                id: this.$route.params[0],
+            });
+            this.$store.dispatch('getDepositsHistory', {
+                id: this.$route.params[0],
+            });
+            // 获取cookie
+            const userAcctKey = this.$cookie.get('acctKey');
+            if (userAcctKey != null) {
+                this.isLogin = true;
+                this.$cookie.set('acctKey', 'f4b37ae9978cb85c0529de792b87f115', {
+                    expires: '7D',
+                });
+                this.$store.dispatch('getAvailableBalance', {
+                    acctKey: userAcctKey,
+                });
+            }
+
         },
+
     };
 </script>
 <style lang="scss">
@@ -218,9 +248,9 @@
         }
         .invest-btn {
             padding: 15px;
-            background-color:#fff;
-            margin-top:10px;
-            border-top:5px solid #e5e5e5;
+            background-color: #fff;
+            margin-top: 10px;
+            border-top: 5px solid #e5e5e5;
             p {
                 font-size: 12px;
                 color: #666;
@@ -284,7 +314,7 @@
                 }
             }
         }
-        .mint-tab-container-wrap{
+        .mint-tab-container-wrap {
             background-color: #fff;
         }
     }

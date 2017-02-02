@@ -7,8 +7,10 @@ import vuex from 'vuex';
 import vueRouter from 'vue-router';
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
-
+import VueCookie from 'vue-cookie';
 import App from './App';
+import ECharts from 'vue2-echarts/src/ECharts/ECharts.vue';
+
 
 // stores
 import stores from './stores/index.js';
@@ -17,10 +19,23 @@ import router from './router.js';
 
 require('normalize.css');
 
+Vue.prototype.getUserCookie = function(acctKey) {
+    const userAcctKey = this.$cookie.get(acctKey);
+    if (userAcctKey != null) {
+        this.$cookie.set(acctKey, userAcctKey, {
+            expires: '7D',
+        });
+        return userAcctKey;
+    } else {
+        return null;
+    }
+};
 Vue.use(vueAxios, axios);
 Vue.use(vuex);
 Vue.use(vueRouter);
 Vue.use(MintUI);
+Vue.use(VueCookie);
+Vue.component('chart', ECharts);
 
 // 使用mock.js拦截ajax请求
 if (process.env.NODE_ENV !== 'production') {

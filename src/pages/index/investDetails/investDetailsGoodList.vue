@@ -12,6 +12,7 @@
         :planInterestDate="detailsGoodLists.planInterestDate"
         :overDate="detailsGoodLists.overDate"
         :status="detailsGoodLists.status"
+        :id="detailsGoodLists.id"
         ></InvestDetailsGood>
     </div>
 </template>

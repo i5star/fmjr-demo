@@ -27,27 +27,33 @@
                 type: String,
                 default: defaultImageNav,
             },
+            route: {
+                type: String,
+            },
         },
         methods: {
             jump() {
+                this.$router.push(`${this.route}`);
             },
         },
     };
 </script>
 
 <style lang="scss">
-   .navigatorBarItem-container {
-       float: left;
-       width: 25%;
-       text-align: center;
-   }
-   .navigatorBar-item-name {
-       font-size: 11px;
-       color: #666;
-       padding-top: 9px;
-   }
-   .navigatorBar-item-img {
-       width: 40px;
-       height: 40x;
-   }
+    .navigatorBarItem-container {
+        float: left;
+        width: 25%;
+        text-align: center;
+    }
+    
+    .navigatorBar-item-name {
+        font-size: 11px;
+        color: #666;
+        padding-top: 9px;
+    }
+    
+    .navigatorBar-item-img {
+        width: 40px;
+        height: 40x;
+    }
 </style>

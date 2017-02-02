@@ -16,9 +16,9 @@
     };
 </script>
 <style>
-    .main-div{
-        width:100%;
-        height:100%;
+    .main-div {
+        width: 100%;
+        height: 100%;
         padding-bottom: 49px;
         box-sizing: border-box;
     }

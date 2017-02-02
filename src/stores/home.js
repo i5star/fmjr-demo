@@ -12,6 +12,7 @@ const home = {
         availableBalance: 0,
         shengXinGoodList: [],
         yueYingGoodList: [],
+        redPackage: [],
     },
     mutations: {
         setGoodList(state, goodList) {
@@ -43,21 +44,35 @@ const home = {
             state.shengXinGoodList = shengXinGoodList;
         },
         addShengXinGoodList(state, shengXinGoodList) {
-            state.shengXinGoodList.push(...shengXinGoodList);
+            if (shengXinGoodList.data != null && shengXinGoodList.data.length > 0) {
+                for (let i = 0; i < shengXinGoodList.data.length; i++) {
+                    state.shengXinGoodList.data.push(shengXinGoodList.data[i]);
+                }
+            }
         },
         // 分秒月盈
         setYueYingGoodList(state, yueYingGoodList) {
             state.yueYingGoodList = yueYingGoodList;
         },
+        addYueYingGoodList(state, yueYingGoodList) {
+            if (yueYingGoodList.data != null && yueYingGoodList.data.length > 0) {
+                for (let i = 0; i < yueYingGoodList.data.length; i++) {
+                    state.yueYingGoodList.data.push(yueYingGoodList.data[i]);
+                }
+            }
+        },
         // 账户可用余额
         setAvailableBalance(state, availableBalance) {
             state.availableBalance = availableBalance;
+        },
+        // 获取红包
+        setRedPackage(state, redPackage) {
+            state.redPackage = redPackage;
         },
     },
     actions: {
         getGoodList(context) {
             vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=1&pageSize=3').then((response) => {
-                // console.log(response.data.data);
                 context.commit('setGoodList', response.data.data);
             });
         },
@@ -77,44 +92,54 @@ const home = {
             });
         },
         // 分秒省心
-        getShengXinGoodList(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=1&pageSize=5&subjectProdType=5').then((response) => {
-                if (context.state.shengXinGoodList.length === 0) {
-                    context.commit('setShengXinGoodList', response.data.data);
-                    return;
+        getShengXinGoodList(context, pageOffset) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=' + pageOffset.pageOffset + '&pageSize=5&subjectProdType=5').then((response) => {
+                if (context.state.shengXinGoodList.data == null) {
+                    context.commit('setShengXinGoodList', response.data);
+                } else {
+                    context.commit('addShengXinGoodList', response.data);
                 }
-                context.commit('addShengXinGoodList', response.data.data);
             });
         },
         // 分秒月盈
-        getYueYingGoodList(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=1&pageSize=5&subjectProdType=6').then((response) => {
-                context.commit('setYueYingGoodList', response.data.data);
+        getYueYingGoodList(context, pageOffset) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/list?pageOffset=' + pageOffset.pageOffset + '&pageSize=5&subjectProdType=6').then((response) => {
+
+                if (context.state.yueYingGoodList.data == null) {
+                    context.commit('setYueYingGoodList', response.data);
+                } else {
+                    context.commit('addYueYingGoodList', response.data);
+                }
             });
         },
         // 项目描述
-        getProjectDescription(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/viewInfo?id=310012').then((response) => {
+        getProjectDescription(context, id) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/viewInfo?id=' + id.id).then((response) => {
                 context.commit('setProjectDescription', response.data.data);
             });
         },
         // 相关资料
-        getRelativeInformation(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/viewFile?id=310012').then((response) => {
+        getRelativeInformation(context, id) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/viewFile?id=' + id.id).then((response) => {
                 context.commit('setRelativeInformation', response.data.data);
             });
         },
         // 投资记录
-        getDepositsHistory(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/investmentList?id=310012').then((response) => {
-                context.commit('setDepositsHistory', response.data.data);
+        getDepositsHistory(context, id) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/subject/investmentList?id=' + id.id).then((response) => {
+                context.commit('setDepositsHistory', response.data);
             });
         },
         // 账户可用余额
-        getAvailableBalance(context) {
-            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/user/getBlance?acctKey=f4b37ae9978cb85c0529de792b87f115').then((response) => {
+        getAvailableBalance(context, acctKey) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/user/getBlance?acctKey=' + acctKey.acctKey).then((response) => {
                 context.commit('setAvailableBalance', response.data.data.balance);
-                // console.log(response.data.data.balance);
+            });
+        },
+        // 红包
+        getRedPackage(context, data) {
+            vue.axios.get('http://192.168.1.13:8080/jinshizi-manage-web/api/user/getCoupons?acctKey=' + data.acctKey + '&subjectId=' + data.subjectId + '&buyCount=' + data.buyCount).then((response) => {
+                context.commit('setRedPackage', response.data.data);
             });
         },
 
