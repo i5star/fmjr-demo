@@ -9,8 +9,8 @@ import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import VueCookie from 'vue-cookie';
 import App from './App';
-import ECharts from 'vue2-echarts/src/ECharts/ECharts.vue';
-
+import VueHighcharts from 'vue-highcharts';
+import Highcharts from 'highcharts/highstock';
 
 // stores
 import stores from './stores/index.js';
@@ -35,7 +35,7 @@ Vue.use(vuex);
 Vue.use(vueRouter);
 Vue.use(MintUI);
 Vue.use(VueCookie);
-Vue.component('chart', ECharts);
+Vue.use(VueHighcharts, { Highcharts });
 
 // 使用mock.js拦截ajax请求
 if (process.env.NODE_ENV !== 'production') {
